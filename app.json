@@ -1,5 +1,5 @@
 {
-  "name": "RAHEEM-XMD",
+  "name": "SHUKRANI-MD",
   "description": "Whatsapp device bot made to help Whatsapp users to enjoy while helping..",
   "keywords": [
     "bot",
@@ -164,4 +164,4 @@
       "plan": "heroku-postgresql:essential-0"
     }
   ]
-}
+}"admin group manage"
