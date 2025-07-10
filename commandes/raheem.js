@@ -53,27 +53,10 @@ zokou({
   if (!chatId) return repondre("❌ Failed to load menu: Unable to get chat ID.");
 
   try {
-    // 1. Send image (intro)
-    await sock.sendMessage(chatId, {
-      image: { url: "https://files.catbox.moe/l2l2yd.jpg" },
-      caption: `*🤖 RAHEEM XMD - Smart WhatsApp Bot Assistant*\n\nWelcome! Use the menu below to explore commands.`,
-      contextInfo: {
-        forwardingScore: 999,
-        isForwarded: true,
-        externalAdReply: {
-          title: "RAHEEM XMD",
-          body: "Your Smart WhatsApp Assistant",
-          sourceUrl: "https://whatsapp.com/channel/0029VbAffhD2ZjChG9DX922r",
-          mediaType: 2,
-          renderLargerThumbnail: true
-        }
-      }
-    }, { quoted: ms });
-
     // 2. Send video (menu with commands)
     await sock.sendMessage(chatId, {
-      gif: { url: "https://files.catbox.moe/hsubai.mp4" },
-      mimetype: 'video/mp4',
+      video: { url: "https://files.catbox.moe/hsubai.mp4" },
+      mimetype: 'gif/mp4',
       caption: fullMenu,
       contextInfo: {
         forwardingScore: 999,
