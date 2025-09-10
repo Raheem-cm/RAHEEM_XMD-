@@ -1,10 +1,10 @@
+// Import necessary modules
 const { zokou } = require(__dirname + "/../framework/zokou");
 const conf = require(__dirname + "/../set");
 const moment = require("moment-timezone");
 const s = require(__dirname + "/../set");
-const more = String.fromCharCode(8206);
-const readmore = more.repeat(4001);
 
+// Define a command named "menu"
 zokou({
   nomCom: "menu",
   categorie: "General"
@@ -12,22 +12,24 @@ zokou({
   let { ms, repondre, prefixe, nomAuteurMessage } = data;
   let { cm } = require(__dirname + "/../framework/zokou");
 
-  // Bot mode
-  let mode = s.MODE.toLowerCase() === "yes" ? "Public" : "Private";
+  // Get bot mode (Public/Private)
+  const mode = s.MODE.toLowerCase() === "yes" ? "Public" : "Private";
 
-  // Group commands
-  let grouped = {};
+  // Group commands by category
+  const grouped = {};
   for (const command of cm) {
-    if (!grouped[command.categorie]) grouped[command.categorie] = [];
+    if (!grouped[command.categorie]) {
+      grouped[command.categorie] = [];
+    }
     grouped[command.categorie].push(command.nomCom);
   }
 
-  // Timezone and Date
+  // Set timezone and get current time and date
   moment.tz.setDefault("Africa/Dar_es_Salaam");
   const time = moment().format("HH:mm:ss");
   const date = moment().format("DD/MM/YYYY");
 
-  // Menu header
+  // Construct the menu header
   let header = `╭─「 *RAHEEM XMD* 」
 │👤 *User:* ${nomAuteurMessage || "Guest"}
 │📆 *Date:* ${date}
@@ -37,7 +39,10 @@ zokou({
 │💻 *Platform:* Linux
 ╰───────────────⬣\n\n`;
 
-  // Build command list
+  // Use Unicode character for the "read more" function
+  const readmore = String.fromCharCode(8206).repeat(4001);
+  
+  // Build the list of commands
   let commandText = "";
   for (const category in grouped) {
     commandText += `┌─「 *${category.toUpperCase()}* 」\n`;
@@ -46,17 +51,20 @@ zokou({
     }
     commandText += `└─────────────⬣\n\n`;
   }
-
+  
+  // Combine all parts of the menu
   const fullMenu = header + readmore + commandText + "> 🤖 *RAHEEM XMD – Smart Assistant Ready to Help You!*";
 
   const chatId = ms?.key?.remoteJid;
-  if (!chatId) return repondre("❌ Failed to load menu: Unable to get chat ID.");
+  if (!chatId) {
+    return repondre("❌ Failed to load menu: Unable to get chat ID.");
+  }
 
   try {
-    // 2. Send video (menu with commands)
+    // Send a video with the menu as the caption
     await sock.sendMessage(chatId, {
       video: { url: "https://files.catbox.moe/hsubai.mp4" },
-      mimetype: 'gif/mp4',
+      mimetype: 'video/mp4', // Corrected mimetype
       caption: fullMenu,
       contextInfo: {
         forwardingScore: 999,
@@ -71,11 +79,11 @@ zokou({
       }
     }, { quoted: ms });
 
-    // 3. Send audio (music)
+    // Send a separate audio message
     await sock.sendMessage(chatId, {
       audio: { url: "https://files.catbox.moe/1uc1ha.mp3" },
       mimetype: "audio/mpeg",
-      ptt: false,
+      ptt: false, // Set to false to prevent it from being a voice note
       contextInfo: {
         forwardingScore: 999,
         isForwarded: true,
@@ -90,6 +98,6 @@ zokou({
 
   } catch (err) {
     console.error("❌ Menu Error:", err);
-    repondre("❌ Failed to load menu. Error: " + err.message);
+    repondre("❌ Failed to load menu. Please try again later.");
   }
 });
