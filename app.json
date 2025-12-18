@@ -1,6 +1,6 @@
  {
   "name":"RAHEEM_XMD-",
-  "description":"Best whatsapp bot💥 developed by   Qartde ",
+  "description":"Best whatsapp bot💥 developed by   NYONI ",
   "keywords":["bot","node","baileys","whatsapp"],
   "logo":"https://files.catbox.moe/7hxv7a.jpg",
   "repository":"https://github.com/ekitale/maths-project",
@@ -58,7 +58,7 @@
     "BOT_NAME" : {
        
       "description":"put A name for your bot",
-      "value":"RAAHEEM-XMD",
+      "value":"RAAHEEM_XMD-",
       "required":false
 
     } ,
