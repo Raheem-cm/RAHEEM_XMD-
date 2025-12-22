@@ -5,7 +5,7 @@
   "main": "popkod.js",
   "type": "commonjs",
   "scripts": {
-    "start": "node "
+    "start": "node popkid.js"
   },
   "keywords": [
     "termux",
