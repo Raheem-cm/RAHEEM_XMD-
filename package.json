@@ -2,10 +2,10 @@
   "name": "RAHEEM_XMD-",
   "version": "2.0.0",
   "description": "WhatsApp Multi Device Bot",
-  "main": "index.js",
+  "main": "popkid.js",
   "type": "commonjs",
   "scripts": {
-    "start": "node index.js"
+    "start": "node popkid.js"
   },
   "keywords": [
     "termux",
