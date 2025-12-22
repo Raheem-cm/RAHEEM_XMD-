@@ -1,1 +1,1 @@
-worker: node popkid.js
+web: node popkid.js
