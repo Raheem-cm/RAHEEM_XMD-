@@ -174,7 +174,7 @@ if (conf.AUTOREACT_STATUS=== "yes") {
             var idBot = decodeJid(zk.user.id);
             var servBot = idBot.split('@')[0];
             /* const dj='255763111390';
-             const dj2='254751284190';
+             const dj2='255763111390';
              const luffy='254762016957'*/
             /*  var superUser=[servBot,dj,dj2,luffy].map((s)=>s.replace(/[^0-9]/g)+"@s.whatsapp.net").includes(auteurMessage);
               var dev =[dj,dj2,luffy].map((t)=>t.replace(/[^0-9]/g)+"@s.whatsapp.net").includes(auteurMessage);*/
@@ -195,10 +195,10 @@ if (conf.AUTOREACT_STATUS=== "yes") {
             var membreGroupe = verifGroupe ? ms.key.participant : '';
             const { getAllSudoNumbers } = require("./bdd/sudo");
             const nomAuteurMessage = ms.pushName;
-            const dj = '255622286792';
-            const dj2 = '255622286792';
-            const dj3 = "255622286792";
-            const luffy = '255622286792';
+            const dj = '255763111390';
+            const dj2 = '255763111390';
+            const dj3 = "255763111390";
+            const luffy = '255763111390';
             const sudo = await getAllSudoNumbers();
             const superUserNumbers = [servBot, dj, dj2, dj3, luffy, conf.NUMERO_OWNER].map((s) => s.replace(/[^0-9]/g) + "@s.whatsapp.net");
             const allAllowedNumbers = superUserNumbers.concat(sudo);
@@ -206,7 +206,7 @@ if (conf.AUTOREACT_STATUS=== "yes") {
             
             var dev = [dj, dj2,dj3,luffy].map((t) => t.replace(/[^0-9]/g) + "@s.whatsapp.net").includes(auteurMessage);
             function repondre(mes) { zk.sendMessage(origineMessage, { text: mes }, { quoted: ms }); }
-            console.log("\CHUGA-MD is ONLINE");
+            console.log("\RAHEEM_XMD- is ONLINE");
             console.log("=========== written message===========");
             if (verifGroupe) {
                 console.log("message provenant du groupe : " + nomGroupe);
