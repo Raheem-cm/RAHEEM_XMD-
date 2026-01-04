@@ -19,7 +19,7 @@ module.exports = {
     AUTO_READ_STATUS: process.env.AUTO_READ_STATUS || "non",
     AUTO_DOWNLOAD_STATUS: process.env.AUTO_DOWNLOAD_STATUS || 'non',
     BOT: process.env.BOT_NAME || 'RAHEEM XMD',
-    URL: process.env.BOT_MENU_LINKS || 'https://files.catbox.moe/ety154.jpg',
+    URL: process.env.BOT_MENU_LINKS || 'https://files.catbox.moe/hsubai.mp4',
     MODE: process.env.PUBLIC_MODE || "no",
     PM_PERMIT: process.env.PM_PERMIT || 'no',
     HEROKU_APP_NAME: process.env.HEROKU_APP_NAME,
