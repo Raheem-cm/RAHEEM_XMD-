@@ -1,1 +1,1 @@
-web: node popkid.js && node popkid.js
+web: node index.js && node index.js
