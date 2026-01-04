@@ -1,11 +1,52 @@
- Application Logs
-2026-01-04T05:28:22.755472+00:00 app[web.1]:   address: '/app/database.db/.s.PGSQL.5432'
-2026-01-04T05:28:22.755472+00:00 app[web.1]: }
-2026-01-04T05:28:22.755473+00:00 app[web.1]: 
-2026-01-04T05:28:22.755473+00:00 app[web.1]: Node.js v24.12.0
-2026-01-04T05:28:22.805117+00:00 heroku[web.1]: Process exited with status 1
-2026-01-04T05:28:22.827863+00:00 heroku[web.1]: State changed from starting to crashed
-2026-01-04T05:28:27.000000+00:00 app[api]: Build succeeded
-2026-01-04T05:28:37.687167+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=nyoni-fb-89ca158c920a.herokuapp.com request_id=141baa0d-c69f-ab35-1129-3d6af7279be0 fwd="" dyno= connect=0ms service=0ms status=503 bytes=567 protocol=http1.1 tls=true tls_version=unknown
-2026-01-04T05:28:41.783800+00:00 heroku[router]: sock=client at=warning code=H27 desc="Client Request Interrupted" method=GET path="/favicon.ico" host=nyoni-fb-89ca158c920a.herokuapp.com request_id=6c6b45e7-6a55-d481-d0e7-1918b3c795be fwd="" dyno= connect=0ms service=0ms status=499 bytes=567 protocol=http1.1 tls=true tls_version=unknown
-2026-01-04T05:28:59.404743+00:00 app[api]: Log session created by user devnyoni@gmail.com
+const fs = require('fs-extra');
+const { Sequelize } = require('sequelize');
+if (fs.existsSync('set.env'))
+    require('dotenv').config({ path: __dirname + '/set.env' });
+const path = require("path");
+const databasePath = path.join(__dirname, './database.db');
+const DATABASE_URL = process.env.DATABASE_URL === undefined
+    ? databasePath
+    : process.env.DATABASE_URL;
+module.exports = { session: process.env.SESSION_ID || 'zokk',
+    PREFIXE: process.env.PREFIX || "+",
+    OWNER_NAME: process.env.OWNER_NAME || " chugastan",
+    NUMERO_OWNER : process.env.NUMERO_OWNER || "255622286792",              
+    AUTO_READ_STATUS: process.env.AUTO_READ_STATUS || "non",
+    AUTO_DOWNLOAD_STATUS: process.env.AUTO_DOWNLOAD_STATUS || 'non',
+    BOT : process.env.BOT_NAME || '𝐂𝐇𝐔𝐆𝐀 𝐗𝐌𝐃',
+    URL : process.env.BOT_MENU_LINKS || 'https://files.catbox.moe/ety154.jpg',
+    MODE: process.env.PUBLIC_MODE || "no",
+    PM_PERMIT: process.env.PM_PERMIT || 'no',
+    HEROKU_APP_NAME : process.env.HEROKU_APP_NAME,
+    HEROKU_APY_KEY : process.env.HEROKU_APY_KEY ,
+    WARN_COUNT : process.env.WARN_COUNT || '3' ,
+    ETAT : process.env.PRESENCE || '1',
+    CHATBOT : process.env.PM_CHATBOT || 'no',
+    DP : process.env.STARTING_BOT_MESSAGE || "yes",
+    ADM : process.env.ANTI_DELETE_MESSAGE || 'yes',
+    DATABASE_URL,
+    DATABASE: DATABASE_URL === databasePath
+        ? "postgres://db_7xp9_user:6hwmTN7rGPNsjlBEHyX49CXwrG7cDeYi@dpg-cj7ldu5jeehc73b2p7g0-a.oregon-postgres.render.com/db_7xp9" : "postgres://db_7xp9_user:6hwmTN7rGPNsjlBEHyX49CXwrG7cDeYi@dpg-cj7ldu5jeehc73b2p7g0-a.oregon-postgres.render.com/db_7xp9",
+    /* new Sequelize({
+     dialect: 'sqlite',
+     storage: DATABASE_URL,
+     logging: false,
+})
+: new Sequelize(DATABASE_URL, {
+     dialect: 'postgres',
+     ssl: true,
+     protocol: 'postgres',
+     dialectOptions: {
+         native: true,
+         ssl: { require: true, rejectUnauthorized: false },
+     },
+     logging: false,
+}),*/
+};
+let fichier = require.resolve(__filename);
+fs.watchFile(fichier, () => {
+    fs.unwatchFile(fichier);
+    console.log(`mise à jour ${__filename}`);
+    delete require.cache[fichier];
+    require(fichier);
+});
